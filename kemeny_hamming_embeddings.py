@@ -42,7 +42,7 @@ def KemenyInvert_unisign(phi):
 
 def KemenyEmbed_no_offset_unisign(sigma):
     n=len(sigma)
-    phi=np.zeros((n*(n-1)/2))
+    phi=np.zeros(int(n*(n-1)/2))
     count=0
     for (i,j) in combinations(range(n),2):
         phi[count]=int(np.sign(sigma[j]-sigma[i])>0)
