@@ -138,7 +138,8 @@ for dataset_choice in dataset_grid:
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
 
 
-        local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
+        local_Hamming_loss = np.sum(np.not_equal(out_emb_real, out_emb_pred))/float(out_emb_real)
+        #local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
         L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in

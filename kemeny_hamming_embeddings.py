@@ -93,7 +93,7 @@ def PK1(x,n):
 def HammingEmbed(sigma):    
     phi=np.zeros((len(sigma),len(sigma)))
     for i in sigma:
-        j=sigma.index(i)
+        j=tuple(sigma).index(i)
         phi[i-1,j]+=1
     return phi        
 
