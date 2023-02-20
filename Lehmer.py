@@ -18,7 +18,22 @@ from kemeny_hamming_embeddings import HammingEmbed, encode_lehmer, decode_lehmer
 from sklearn.metrics import hamming_loss
 from sklearn.pipeline import Pipeline
 
-
+def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
+    acc_list = []
+    for i in range(y_true.shape[0]):
+        set_true = set( np.where(y_true[i])[0] )
+        set_pred = set( np.where(y_pred[i])[0] )
+        #print('\nset_true: {0}'.format(set_true))
+        #print('set_pred: {0}'.format(set_pred))
+        tmp_a = None
+        if len(set_true) == 0 and len(set_pred) == 0:
+            tmp_a = 1
+        else:
+            tmp_a = len(set_true.intersection(set_pred))/\
+                    float( len(set_true.union(set_pred)) )
+        #print('tmp_a: {0}'.format(tmp_a))
+        acc_list.append(tmp_a)
+    return np.mean(acc_list[2])
 
 #### parameters for running code ####
 regressor = 'knn' # can use 'kernel_ridge'
@@ -138,12 +153,13 @@ for dataset_choice in dataset_grid:
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
 
 
-        local_Hamming_loss = np.sum(np.not_equal(out_emb_real, out_emb_pred))/float(out_emb_real)
+        #local_Hamming_loss = np.sum(np.not_equal(out_emb_real, out_emb_pred))/float(out_emb_real)
         #local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
+        local_Hamming_loss = hammingloss(out_emb_real, out_emb_pred)
         L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
-                               zip(predictions.iteritems(),real_rankings.iteritems())]
+                               zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
         L_results_kendall_coeff += [mean_kendall_tau_coeff]
 
