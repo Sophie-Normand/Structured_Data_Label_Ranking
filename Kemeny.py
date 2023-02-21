@@ -196,7 +196,7 @@ for dataset_choice in dataset_grid:
         L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
-                               zip(predictions.iteritems(),real_rankings.iteritems())]
+                               zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
         result_kendall_tau = np.mean(np.sum(np.abs(y_test.values - np.asarray(L_pred)),axis = 1))
         result_kendall_tau_normalized = result_kendall_tau/y_test.shape[1]
