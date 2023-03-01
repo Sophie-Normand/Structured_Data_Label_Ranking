@@ -24,9 +24,8 @@ from itertools import combinations
 import operalib as ovk #for gradient based ridge learning when output embedding is large
 
 
-
 #### parameters for running code ####
-regressor = 'kernel_ridge' # can use 'kernel_ridge', 'rf', 'onorma' or 'knn'
+regressor = 'knn' # can use 'kernel_ridge', 'rf', 'onorma' or 'knn'
 datasets_choice = 'main_paper' #  can use 'supplementary' and 'additionals'
 base_data_path = 'data/'
 
@@ -168,9 +167,9 @@ for dataset_choice in dataset_grid:
             simplex.objective = 2 * (cost_vector + 0.5) * sigma
 
             # solve using branch and bound :
-            #cbcModel = simplex.getCbcModel()
-            #verbose = cbcModel.branchAndBound()
-            cbcModel = simplex
+            cbcModel = simplex.getCbcModel()
+            verbose = cbcModel.solve()
+            #cbcModel = simplex
 
             solution = cbcModel.primalVariableSolution['sigma']
             L_pred += [solution]
