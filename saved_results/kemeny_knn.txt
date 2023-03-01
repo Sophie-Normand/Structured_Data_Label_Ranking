@@ -1,0 +1,33 @@
+Kemeny results knn
+
+kendall correlation results : authorship
+mean result :0.9320700280112046
+std resul :0.018219544842748094
+hamming loss : 0.04966876750700279
+
+kendall correlation results : glass
+mean result :0.8495468975468974
+std resul :0.054650789364424246
+hamming loss : 0.06973544973544973
+
+kendall correlation results : iris
+mean result :0.952888888888889
+std resul :0.03813944524964429
+hamming loss : 0.03140740740740741
+
+kendall correlation results : vehicle
+mean result :0.8542128851540618
+std resul :0.028927762999553935
+hamming loss : 0.08081967787114847
+
+kendall correlation results : vowel
+mean result :0.8475250032985882
+std resul :0.023824067601940592
+hamming loss : 0.06715313845674051
+
+kendall correlation results : wine
+mean result :0.9333333333333332
+std resul :0.05878639996595136
+hamming loss : 0.040203340595497454
+
+time :96.61684894561768

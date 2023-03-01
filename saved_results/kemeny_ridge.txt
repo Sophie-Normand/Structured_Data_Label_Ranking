@@ -1,0 +1,33 @@
+Kemeny results kernerl_ridge
+
+kendall correlation results : authorship
+mean result :0.9352203548085902
+std resul :0.06257182366161482
+hamming loss : 0.042455532212885165
+
+kendall correlation results : glass
+mean result :0.8551630591630591
+std resul :0.05585309681548654
+hamming loss : 0.07426647426647427
+
+kendall correlation results : iris
+mean result :0.9635555555555557
+std resul :0.045053603191019295
+hamming loss : 0.021925925925925932
+
+kendall correlation results : vehicle
+mean result :0.8881830065359477
+std resul :0.026873465236548415
+hamming loss : 0.06414355742296919
+
+kendall correlation results : vowel
+mean result :0.9224137749043411
+std resul :0.014050794320148169
+hamming loss : 0.0450443210305989
+
+kendall correlation results : wine
+mean result :0.9416122004357298
+std resul :0.0501335546213171
+hamming loss : 0.031706608569353666
+
+time :1168.0923881530762
