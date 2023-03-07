@@ -37,7 +37,7 @@ def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
 
 #### parameters for running code ####
 regressor = 'knn' # can use 'kernel_ridge'
-datasets_choice = 'main_paper' #  can use 'supplementary' and 'additionals'
+datasets_choice = 'german_election' #  can use 'supplementary' and 'additionals', and 'german_election'
 
 base_data_path = 'data/'
 
@@ -50,6 +50,9 @@ elif datasets_choice == 'supplementary':
     dataset_grid = ['bodyfat','calhousing','cpu-small','pendigits','segment','wisconsin','fried']
 elif datasets_choice == 'sushi':
     dataset_grid = ['sushi_one_hot']
+elif datasets_choice == 'german_election':
+    base_data_path = 'data_new/'
+    dataset_grid = ['german_2005_modif2', 'german_2009_modif2']
 else:
     print('unknown dataset choice')
     exit()
