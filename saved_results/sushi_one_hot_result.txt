@@ -1,0 +1,40 @@
+Lehmer.py
+
+KNN
+
+kendall correlation results : sushi_one_hot
+mean result :0.1770382222222222
+std resul :0.010371812742021308
+hamming loss : 0.002857142857142857
+time :226.4906768798828
+
+
+kernerl_ridge
+
+
+
+
+Kemeny.py
+
+KNN
+
+kendall correlation results : sushi_one_hot
+mean result :0.3087111111111111
+std resul :0.01192503332293401
+hamming loss : 0.16649440000000001
+time :178.65108799934387
+
+
+kernel_ridge
+
+
+
+Hamming.py 
+
+KNN
+
+kendall correlation results : sushi_one_hot
+mean result :0.033743999999999996
+std resul :0.009828488941042641
+hamming loss : 0.16705599999999998
+time :271.58858489990234
