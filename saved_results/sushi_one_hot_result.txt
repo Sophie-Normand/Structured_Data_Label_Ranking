@@ -11,7 +11,11 @@ time :226.4906768798828
 
 kernerl_ridge
 
-
+kendall correlation results : sushi_one_hot
+mean result :0.20687466666666665
+std resul :0.0101061406684192
+hamming loss : 0.012197802197802199
+time :48183.23624610901
 
 
 Kemeny.py
@@ -27,6 +31,11 @@ time :178.65108799934387
 
 kernel_ridge
 
+kendall correlation results : sushi_one_hot
+mean result :0.33412088888888897
+std resul :0.011870591244492718
+hamming loss : 0.1655504
+time :48209.01649188995
 
 
 Hamming.py 
@@ -38,3 +47,12 @@ mean result :0.033743999999999996
 std resul :0.009828488941042641
 hamming loss : 0.16705599999999998
 time :271.58858489990234
+
+
+kernel_ridge
+
+kendall correlation results : sushi_one_hot
+mean result :0.029141333333333335
+std resul :0.010949427864865873
+hamming loss : 0.1645264
+time :48126.08036613464
