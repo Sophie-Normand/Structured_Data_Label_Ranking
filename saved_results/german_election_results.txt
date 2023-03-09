@@ -1,0 +1,58 @@
+german_election
+
+Lehmer.py
+
+knn
+
+kendall correlation results : german_2005_modif2
+mean result :0.8460348432055746
+std resul :0.02340613796041697
+hamming loss : 0.34700000000000003
+time :10.739773273468018
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.8486666666666666
+std resul :0.02588701397217016
+hamming loss : 0.3846666666666666
+time :139.61684393882751
+
+
+
+Hamming.py
+
+knn
+
+kendall correlation results : german_2005_modif2
+mean result :0.20059465737514515
+std resul :0.03422783452241244
+hamming loss : 0.10584529616724739
+time :21.66063904762268
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.18712891986062719
+std resul :0.032391879156281396
+hamming loss : 0.10029732868757261
+time :195.70502305030823
+
+
+Kemeny.py
+
+knn
+
+kendall correlation results : german_2005_modif2
+mean result :0.8504599303135888
+std resul :0.022587658276662155
+hamming loss : 0.10547270615563299
+time :40.41892099380493
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.7897235772357724
+std resul :0.05691915477203193
+hamming loss : 0.10994843205574913
+time :210.72714686393738

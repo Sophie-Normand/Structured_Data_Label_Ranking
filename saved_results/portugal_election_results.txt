@@ -1,0 +1,123 @@
+portugal_election
+
+Lehmer.py
+
+knn
+
+kendall correlation results : portugal_2009_end
+mean result :0.5806408602150538
+std resul :0.04365344534574357
+hamming loss : 0.13697619047619047
+
+kendall correlation results : portugal_2013_end
+mean result :0.558989247311828
+std resul :0.044123356863242265
+hamming loss : 0.10595238095238096
+
+kendall correlation results : portugal_2017_end
+mean result :0.500494623655914
+std resul :0.05390282576978985
+hamming loss : 0.07142857142857142
+
+time :65.20391798019409
+
+kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :-0.6130236559139784
+std resul :0.04719518681452197
+hamming loss : 0.06866666666666665
+
+kendall correlation results : portugal_2013_end
+mean result :-0.6077548387096774
+std resul :0.04340401737982394
+hamming loss : 0.08854761904761904
+
+kendall correlation results : portugal_2017_end
+mean result :-0.5851913978494624
+std resul :0.05052396081322421
+hamming loss : 0.07624603174603176
+
+time :481.227144241333
+
+
+Hamming.py
+
+knn
+
+kendall correlation results : portugal_2009_end
+mean result :0.13721290322580645
+std resul :0.05897112936632415
+hamming loss : 0.20928688172043014
+
+kendall correlation results : portugal_2013_end
+mean result :0.00878279569892473
+std resul :0.06000550882330099
+hamming loss : 0.21559569892473118
+
+kendall correlation results : portugal_2017_end
+mean result :-0.11059784946236557
+std resul :0.052506600282132644
+hamming loss : 0.2022898924731183
+
+time :44.042601108551025
+
+kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.31481462365591395
+
+kendall correlation results : portugal_2013_end
+mean result :0.6551010752688172
+std resul :0.03760414857200484
+hamming loss : 0.3241668817204301
+
+kendall correlation results : portugal_2017_end
+mean result :0.6304860215053764
+std resul :0.04597512606226554
+hamming loss : 0.3262348387096774
+
+time :551.2332422733307
+
+
+Kemeny.py
+
+knn
+
+kendall correlation results : portugal_2009_end
+mean result :0.6579956989247312
+std resul :0.04335495477028332
+hamming loss : 0.2156404301075269
+
+kendall correlation results : portugal_2013_end
+mean result :0.6492645161290322
+std resul :0.03894831674203405
+hamming loss : 0.21954752688172047
+
+kendall correlation results : portugal_2017_end
+mean result :0.6326709677419355
+std resul :0.05247762786897423
+hamming loss : 0.2126210752688172
+
+time :108.98130989074707
+
+kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.22264258064516132
+
+kendall correlation results : portugal_2013_end
+mean result :0.6554924731182797
+std resul :0.037934970859428346
+hamming loss : 0.21242666666666668
+
+kendall correlation results : portugal_2017_end
+mean result :0.6311311827956989
+std resul :0.046221143916911664
+hamming loss : 0.21689290322580643
+
+time :440.8002440929413

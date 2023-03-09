@@ -1,0 +1,60 @@
+germen_election_sep
+
+Lehmer.py
+
+knn
+
+mean result :0.8460348432055746
+std resul :0.02340613796041697
+hamming loss : 0.34700000000000003
+time :33.372597217559814
+Kendall's tau test set :  0.7796116504854367
+Local_Hamming_loss :  0.5
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.8486666666666666
+std resul :0.02588701397217016
+hamming loss : 0.3846666666666666
+time :241.56590914726257
+Kendall's tau test set :  0.7868932038834952
+Local_Hamming_loss :  0.16666666666666666
+
+
+Hamming.py
+
+knn
+
+kendall correlation results : german_2005_modif2
+mean result :0.20059465737514515
+std resul :0.03422783452241244
+hamming loss : 0.10584529616724739
+time :31.630439043045044
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.18712891986062719
+std resul :0.032391879156281396
+hamming loss : 0.10029732868757261
+time :256.09987592697144
+
+
+Kemeny.py
+
+knn
+
+kendall correlation results : german_2005_modif2
+mean result :0.8504599303135888
+std resul :0.022587658276662155
+hamming loss : 0.10547270615563299
+time :50.09166121482849
+
+kernel_ridge
+
+kendall correlation results : german_2005_modif2
+mean result :0.7897235772357724
+std resul :0.05691915477203193
+hamming loss : 0.10994843205574913
+time :212.7342357635498

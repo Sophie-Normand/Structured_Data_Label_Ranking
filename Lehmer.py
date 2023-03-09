@@ -36,7 +36,7 @@ def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
     return np.mean(acc_list[2])
 
 #### parameters for running code ####
-regressor = 'knn' # can use 'kernel_ridge'
+regressor = 'kernel_ridge' # can use 'kernel_ridge'
 datasets_choice = 'portugal_election' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election'
 
 base_data_path = 'data/'
