@@ -1,0 +1,143 @@
+main_paper
+
+Lehmer.py
+
+knn
+
+kendall correlation results : iris
+mean result :0.953777777777778
+std resul :0.04165466493816879
+hamming loss : 0.7076666666666668
+
+kendall correlation results : vehicle
+mean result :0.833952380952381
+std resul :0.027125572779867373
+hamming loss : 0.3385714285714285
+
+kendall correlation results : glass
+mean result :0.8649696969696968
+std resul :0.05171187743464008
+hamming loss : 0.3483015873015873
+
+kendall correlation results : authorship
+mean result :0.9223958916900097
+std resul :0.019758348260762518
+hamming loss : 0.6123333333333334
+
+kendall correlation results : vowel
+mean result :0.7834761841931653
+std resul :0.028143534468337436
+hamming loss : 0.21307445839334385
+
+kendall correlation results : wine
+mean result :0.9294989106753814
+std resul :0.062383611328868716
+hamming loss : 0.8713333333333334
+
+time :52.06318187713623
+
+kernel_ridge
+
+kendall correlation results : iris
+mean result :0.9697777777777778
+std resul :0.027310740436866134
+hamming loss : 0.7943333333333333
+
+kendall correlation results : vehicle
+mean result :0.8521503267973857
+std resul :0.02486147321081315
+hamming loss : 0.35514285714285704
+
+kendall correlation results : glass
+mean result :0.8321385281385281
+std resul :0.050926291459992584
+hamming loss : 0.2673015873015873
+
+kendall correlation results : authorship
+mean result :0.9198478057889824
+std resul :0.019981319340819353
+hamming loss : 0.5018571428571428
+
+kendall correlation results : vowel
+mean result :0.8633817126269956
+std resul :0.014200252469325327
+hamming loss : 0.3681243172032646
+
+kendall correlation results : wine
+mean result :0.8868409586056645
+std resul :0.07826587477456848
+hamming loss : 0.6829999999999999
+
+time :1468.3280999660492
+
+
+Hamming.py
+
+knn
+
+kendall correlation results : iris
+mean result :-0.12977777777777783
+std resul :0.13335999733386653
+hamming loss : 0.034962962962962967
+
+kendall correlation results : vehicle
+mean result :-0.2156050420168068
+std resul :0.03465747873016591
+hamming loss : 0.0800406162464986
+
+kendall correlation results : glass
+mean result :0.07769119769119767
+std resul :0.03838049655081025
+hamming loss : 0.07645983645983645
+
+kendall correlation results : authorship
+mean result :0.007764705882352941
+std resul :0.015395600714339899
+hamming loss : 0.04984803921568628
+
+kendall correlation results : vowel
+mean result :0.24736614329067155
+std resul :0.04086381510920252
+hamming loss : 0.08970024829373027
+
+kendall correlation results : wine
+mean result :-0.3700217864923747
+std resul :0.043745540678520344
+hamming loss : 0.04615831517792302
+
+time :50.66276502609253
+
+kernel_ridge
+
+kendall correlation results : iris
+mean result :-0.10311111111111115
+std resul :0.13324144982180763
+hamming loss : 0.024296296296296295
+
+kendall correlation results : vehicle
+mean result :-0.21387114845938376
+std resul :0.03200377552504393
+hamming loss : 0.06742051820728291
+
+kendall correlation results : glass
+mean result :0.07978066378066377
+std resul :0.04609192048192272
+hamming loss : 0.05821067821067821
+
+kendall correlation results : authorship
+mean result :0.0008664799253034542
+std resul :0.017555905952829593
+hamming loss : 0.043518907563025205
+
+kendall correlation results : vowel
+mean result :0.2570779786251484
+std resul :0.043645315377791254
+hamming loss : 0.052116134294521936
+
+kendall correlation results : wine
+mean result :-0.36710239651416116
+std resul :0.03202021494481547
+hamming loss : 0.032970225127087874
+
+time :1537.8154158592224
+

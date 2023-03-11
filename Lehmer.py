@@ -37,7 +37,7 @@ def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
 
 #### parameters for running code ####
 regressor = 'kernel_ridge' # can use 'kernel_ridge'
-datasets_choice = 'portugal_election' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election'
+datasets_choice = 'main_paper' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election'
 
 base_data_path = 'data/'
 
