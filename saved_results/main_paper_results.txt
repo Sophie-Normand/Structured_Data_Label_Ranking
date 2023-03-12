@@ -70,6 +70,41 @@ hamming loss : 0.6829999999999999
 
 time :1468.3280999660492
 
+rf
+
+kendall correlation results : iris
+mean result :0.9671111111111113
+std resul :0.03181427585453025
+hamming loss : 0.7556666666666668
+
+kendall correlation results : vehicle
+mean result :0.8631335200746968
+std resul :0.02293785379938306
+hamming loss : 0.4066190476190476
+
+kendall correlation results : glass
+mean result :0.8953535353535353
+std resul :0.03466559220738287
+hamming loss : 0.4116904761904761
+
+kendall correlation results : authorship
+mean result :0.9093090569561159
+std resul :0.021161232675456554
+hamming loss : 0.5216666666666666
+
+kendall correlation results : vowel
+mean result :0.8394434621981791
+std resul :0.020230405825397396
+hamming loss : 0.33720619189891626
+
+kendall correlation results : wine
+mean result :0.915294117647059
+std resul :0.05487539558565718
+hamming loss : 0.6843333333333333
+
+time :214.9365041255951
+
+
 
 Hamming.py
 
@@ -140,4 +175,39 @@ std resul :0.03202021494481547
 hamming loss : 0.032970225127087874
 
 time :1537.8154158592224
+
+rf
+
+kendall correlation results : iris
+mean result :-0.10311111111111115
+std resul :0.12177777777777776
+hamming loss : 0.023111111111111114
+
+kendall correlation results : vehicle
+mean result :-0.2194183006535948
+std resul :0.034382722998180335
+hamming loss : 0.07226610644257703
+
+kendall correlation results : glass
+mean result :0.1135180375180375
+std resul :0.04236973105558081
+hamming loss : 0.04951178451178451
+
+kendall correlation results : authorship
+mean result :0.007218487394957986
+std resul :0.020117782980179487
+hamming loss : 0.051398109243697476
+
+kendall correlation results : vowel
+mean result :0.25595619474864756
+std resul :0.04077940533005859
+hamming loss : 0.0507910614257098
+
+kendall correlation results : wine
+mean result :-0.34209150326797383
+std resul :0.05493219418617174
+hamming loss : 0.05363834422657952
+
+time :130.5078320503235
+
 

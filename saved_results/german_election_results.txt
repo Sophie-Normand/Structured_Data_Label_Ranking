@@ -18,6 +18,14 @@ std resul :0.02588701397217016
 hamming loss : 0.3846666666666666
 time :139.61684393882751
 
+rf
+
+kendall correlation results : german_2005_modif2
+mean result :0.9214959349593496
+std resul :0.018786586207301347
+hamming loss : 0.5586666666666666
+time :25.144001722335815
+
 
 
 Hamming.py
@@ -38,6 +46,14 @@ std resul :0.032391879156281396
 hamming loss : 0.10029732868757261
 time :195.70502305030823
 
+rf
+
+kendall correlation results : german_2005_modif2
+mean result :0.2022903600464576
+std resul :0.0351268442904151
+hamming loss : 0.05601579558652729
+time :39.966245889663696
+
 
 Kemeny.py
 
@@ -56,3 +72,11 @@ mean result :0.7897235772357724
 std resul :0.05691915477203193
 hamming loss : 0.10994843205574913
 time :210.72714686393738
+
+rf
+
+kendall correlation results : german_2005_modif2
+mean result :0.9231567944250871
+std resul :0.017407549732781337
+hamming loss : 0.05639674796747968
+time :30.35353422164917

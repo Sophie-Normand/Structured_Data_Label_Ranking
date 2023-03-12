@@ -10,6 +10,7 @@ from sklearn.model_selection import RepeatedKFold , cross_val_score, GridSearchC
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.neighbors import KNeighborsRegressor
 from scipy.stats import kendalltau
+from sklearn.ensemble import RandomForestRegressor
 
 from misc_functions import ranking_format_sorted
 from kemeny_hamming_embeddings import HammingEmbed, vectorize_hamming_labels
@@ -21,8 +22,8 @@ from sklearn.pipeline import Pipeline
 
 
 #### parameters for running code ####
-regressor = 'kernel_ridge' # can use 'kernel_ridge'
-datasets_choice = 'main_paper' #  can use 'supplementary' and 'additionals'
+regressor = 'rf' # can use 'kernel_ridge'
+datasets_choice = 'german_election_sep' #  can use 'supplementary' and 'additionals'
 
 base_data_path = 'data/'
 
@@ -63,6 +64,9 @@ elif regressor == 'knn':
     alpha_grid = [1, 2, 3, 4, 5, 8, 10, 15, 20, 30, 50]
     parameters = {'clf__n_neighbors': alpha_grid}
     pipeline = Pipeline([('clf', KNeighborsRegressor())])
+elif regressor =='rf':
+    parameters = {}
+    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50,max_depth = 50,n_jobs = -1))])
 
 
 

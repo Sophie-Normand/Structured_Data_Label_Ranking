@@ -1,0 +1,37 @@
+main_paper
+
+Kemeny.py
+
+rf
+
+kendall correlation results : iris
+mean result :0.9644444444444445
+std resul :0.03325917677132389
+hamming loss : 0.023703703703703703
+
+kendall correlation results : vehicle
+mean result :0.8801746031746032
+std resul :0.027516405786305275
+hamming loss : 0.0711421568627451
+
+kendall correlation results : glass
+mean result :0.9061875901875901
+std resul :0.0455395676581686
+hamming loss : 0.0511014911014911
+
+kendall correlation results : authorship
+mean result :0.9224659197012138
+std resul :0.019419672633799158
+hamming loss : 0.05267962184873949
+
+kendall correlation results : vowel
+mean result :0.899155297532656
+std resul :0.01935035606789519
+hamming loss : 0.0510302390576833
+
+kendall correlation results : wine
+mean result :0.922004357298475
+std resul :0.05269809800614526
+hamming loss : 0.046768336964415395
+
+time :173.74013900756836
