@@ -1,0 +1,299 @@
+Hamming_v2.py
+
+knn
+
+main_paper
+
+kendall correlation results : iris
+mean result :0.9457777777777779
+std resul :0.04557668886504626
+hamming loss : 0.03614814814814815
+
+kendall correlation results : vehicle
+mean result :0.8490046685340803
+std resul :0.032779045378961404
+hamming loss : 0.07892752100840336
+
+kendall correlation results : glass
+mean result :0.8294891774891774
+std resul :0.07054644275012517
+hamming loss : 0.07639490139490138
+
+kendall correlation results : authorship
+mean result :0.9311157796451915
+std resul :0.017564874780436786
+hamming loss : 0.04958158263305321
+
+kendall correlation results : vowel
+mean result :0.7209489378545981
+std resul :0.03862919884083319
+hamming loss : 0.08960069090429296
+
+kendall correlation results : wine
+mean result :0.9251416122004358
+std resul :0.05305135705563829
+hamming loss : 0.043660130718954256
+
+time :47.590327978134155
+
+
+german_election
+
+kendall correlation results : german_2005_modif2
+mean result :0.8492590011614399
+std resul :0.022002173285582426
+hamming loss : 0.10580720092915216
+
+kendall correlation results : german_2009_modif2
+mean result :0.829526132404181
+std resul :0.024461378375967343
+hamming loss : 0.11656120789779326
+
+time :18.73707914352417
+
+
+german_election_sep
+
+kendall correlation results : german_2005_modif2
+mean result :0.8492590011614399
+std resul :0.022002173285582426
+hamming loss : 0.10580720092915216
+time :9.874459266662598
+german_2009_modif2
+Kendall's tau test set :  0.7543689320388348
+Local_Hamming_loss :  0.14815533980582524
+
+
+portugal_election
+
+kendall correlation results : portugal_2009_end
+mean result :0.6419913978494622
+std resul :0.03955258644465351
+hamming loss : 0.20923870967741937
+
+kendall correlation results : portugal_2013_end
+mean result :0.607058064516129
+std resul :0.04902044170011635
+hamming loss : 0.21518107526881722
+
+kendall correlation results : portugal_2017_end
+mean result :0.6008989247311828
+std resul :0.06029248002184557
+hamming loss : 0.20182881720430107
+
+time :23.257460117340088
+
+
+portugal_election_sep
+
+kendall correlation results : portugal_2009_end
+mean result :0.6419913978494622
+std resul :0.03955258644465351
+hamming loss : 0.20923870967741937
+time :8.820533990859985
+portugal_2013_end
+Kendall's tau test set :  0.6474025974025973
+Local_Hamming_loss :  0.20155844155844155
+portugal_2017_end
+Kendall's tau test set :  0.6233766233766233
+Local_Hamming_loss :  0.207012987012987
+
+
+
+kernel_ridge
+
+main_paper
+
+kendall correlation results : iris
+mean result :0.9635555555555557
+std resul :0.03631413016144974
+hamming loss : 0.024296296296296295
+
+kendall correlation results : vehicle
+mean result :0.8780224089635857
+std resul :0.029340361446756683
+hamming loss : 0.06742051820728291
+
+kendall correlation results : glass
+mean result :0.8890274170274169
+std resul :0.04470310369765147
+hamming loss : 0.05821067821067821
+
+kendall correlation results : authorship
+mean result :0.9385639589169003
+std resul :0.015674696051389467
+hamming loss : 0.043518907563025205
+
+kendall correlation results : vowel
+mean result :0.8939989444517746
+std resul :0.02033428483334388
+hamming loss : 0.052116134294521936
+
+kendall correlation results : wine
+mean result :0.9482788671023965
+std resul :0.04019312031908952
+hamming loss : 0.032970225127087874
+
+time :669.7601130008698
+
+
+german_election
+
+kendall correlation results : german_2005_modif2
+mean result :0.8528339140534261
+std resul :0.02599993525064073
+hamming loss : 0.10029732868757261
+
+kendall correlation results : german_2009_modif2
+mean result :0.8224297328687571
+std resul :0.02463619851695922
+hamming loss : 0.1223507549361208
+
+time :195.53530883789062
+
+
+german_election_sep
+
+kendall correlation results : german_2005_modif2
+mean result :0.8528339140534261
+std resul :0.02599993525064073
+hamming loss : 0.10029732868757261
+time :99.13116788864136
+german_2009_modif2
+Kendall's tau test set :  0.787864077669903
+Local_Hamming_loss :  0.13611650485436894
+
+
+portugal_election
+
+kendall correlation results : portugal_2009_end
+mean result :0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.22264258064516132
+
+kendall correlation results : portugal_2013_end
+mean result :0.6551010752688172
+std resul :0.03760414857200484
+hamming loss : 0.21273806451612903
+
+kendall correlation results : portugal_2017_end
+mean result :0.6304860215053764
+std resul :0.04597512606226554
+hamming loss : 0.2176688172043011
+
+time :216.7907519340515
+
+
+portugal_election_sep
+
+kendall correlation results : portugal_2009_end
+mean result :0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.22264258064516132
+time :74.92361283302307
+portugal_2013_end
+Kendall's tau test set :  0.655194805194805
+Local_Hamming_loss :  0.21272727272727274
+portugal_2017_end
+Kendall's tau test set :  0.6305194805194805
+Local_Hamming_loss :  0.21766233766233767
+
+
+
+rf
+
+main_paper
+
+kendall correlation results : iris
+mean result :0.961777777777778
+std resul :0.03327105292837845
+hamming loss : 0.025481481481481483
+
+kendall correlation results : vehicle
+mean result :0.8751988795518207
+std resul :0.02472934367098289
+hamming loss : 0.07221078431372549
+
+kendall correlation results : glass
+mean result :0.9022741702741702
+std resul :0.05267811162147983
+hamming loss : 0.05042568542568542
+
+kendall correlation results : authorship
+mean result :0.9254070961718022
+std resul :0.02045136874025224
+hamming loss : 0.04988060224089635
+
+kendall correlation results : vowel
+mean result :0.8942316928354664
+std resul :0.020328635375610273
+hamming loss : 0.050507382840144416
+
+kendall correlation results : wine
+mean result :0.9116775599128542
+std resul :0.05684264120943551
+hamming loss : 0.0529121278140886
+
+time :252.8188099861145
+
+
+german_election
+
+kendall correlation results : german_2005_modif2
+mean result :0.9237444831591171
+std resul :0.019975814470783424
+hamming loss : 0.054490127758420444
+
+kendall correlation results : german_2009_modif2
+mean result :0.8822439024390243
+std resul :0.02111301021007137
+hamming loss : 0.08467828106852497
+
+time :87.43436217308044
+
+
+german_election_sep
+
+kendall correlation results : german_2005_modif2
+mean result :0.9207990708478512
+std resul :0.01879586093464315
+hamming loss : 0.05683530778164925
+time :43.838091135025024
+german_2009_modif2
+Kendall's tau test set :  0.8184466019417476
+Local_Hamming_loss :  0.1258252427184466
+
+
+portugal_election
+
+kendall correlation results : portugal_2009_end
+mean result :0.6228731182795699
+std resul :0.048281303893951334
+hamming loss : 0.20157075268817207
+
+kendall correlation results : portugal_2013_end
+mean result :0.6166451612903225
+std resul :0.06120112732535509
+hamming loss : 0.1975483870967742
+
+kendall correlation results : portugal_2017_end
+mean result :0.604
+std resul :0.052947581719938776
+hamming loss : 0.19502967741935484
+
+time :107.96466994285583
+
+
+portugal_election_sep
+
+kendall correlation results : portugal_2009_end
+mean result :0.6195397849462365
+std resul :0.05100262877520858
+hamming loss : 0.20404989247311833
+time :37.090137243270874
+portugal_2013_end
+Kendall's tau test set :  0.6155844155844155
+Local_Hamming_loss :  0.17922077922077922
+portugal_2017_end
+Kendall's tau test set :  0.5948051948051948
+Local_Hamming_loss :  0.1864935064935065
