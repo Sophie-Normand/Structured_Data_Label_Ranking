@@ -97,7 +97,43 @@ Kemeny.py
 
 knn
 
+kendall correlation results : portugal_2009_end
+mean result :0.6579956989247312
+std resul :0.04335495477028332
+hamming loss : 0.2156404301075269
+time :17.607011079788208
+portugal_2013_end
+Kendall's tau test set :  0.661038961038961
+Local_Hamming_loss :  0.20285714285714285
+portugal_2017_end
+Kendall's tau test set :  0.6285714285714284
+Local_Hamming_loss :  0.21142857142857144
+
 kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.22264258064516132
+time :134.6473536491394
+portugal_2013_end
+Kendall's tau test set :  0.655194805194805
+Local_Hamming_loss :  0.21272727272727274
+portugal_2017_end
+Kendall's tau test set :  0.6305194805194805
+Local_Hamming_loss :  0.21766233766233767
+
 
 rf
 
+kendall correlation results : portugal_2009_end
+mean result :0.6547139784946236
+std resul :0.04328234872532318
+hamming loss : 0.20756301075268813
+time :43.275102853775024
+portugal_2013_end
+Kendall's tau test set :  0.6597402597402597
+Local_Hamming_loss :  0.20363636363636364
+portugal_2017_end
+Kendall's tau test set :  0.6383116883116882
+Local_Hamming_loss :  0.2051948051948052
