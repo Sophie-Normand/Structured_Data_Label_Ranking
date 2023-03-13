@@ -1,4 +1,4 @@
-germen_election_sep
+german_election_sep
 
 Lehmer.py
 

@@ -1,0 +1,103 @@
+portugal_election_sep
+
+Lehmer.py
+
+
+knn
+
+kendall correlation results : portugal_2009_end
+mean result :0.5806408602150538
+std resul :0.04365344534574357
+hamming loss : 0.13697619047619047
+time :80.21928477287292
+portugal_2013_end
+Kendall's tau test set :  0.6155844155844156
+Local_Hamming_loss :  0.2857142857142857
+portugal_2017_end
+Kendall's tau test set :  0.5857142857142856
+Local_Hamming_loss :  0.2857142857142857
+
+kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :-0.6130236559139784
+std resul :0.04719518681452197
+hamming loss : 0.06866666666666665
+time :196.92552757263184
+portugal_2013_end
+Kendall's tau test set :  -0.5967532467532467
+Local_Hamming_loss :  0.0
+portugal_2017_end
+Kendall's tau test set :  -0.5902597402597402
+Local_Hamming_loss :  0.0
+
+rf
+
+kendall correlation results : portugal_2009_end
+mean result :0.6097247311827957
+std resul :0.03972622903335751
+hamming loss : 0.16452380952380952
+time :148.202378988266
+portugal_2013_end
+Kendall's tau test set :  0.6227272727272728
+Local_Hamming_loss :  0.1111111111111111
+portugal_2017_end
+Kendall's tau test set :  0.5759740259740259
+Local_Hamming_loss :  0.1111111111111111
+
+
+
+Hamming.py
+
+
+knn
+
+kendall correlation results : portugal_2009_end
+mean result :0.13266666666666665
+std resul :0.05745836136328481
+hamming loss : 0.20907870967741934
+time :102.49741625785828
+portugal_2013_end
+Kendall's tau test set :  0.12467532467532469
+Local_Hamming_loss :  0.2031168831168831
+portugal_2017_end
+Kendall's tau test set :  0.09545454545454544
+Local_Hamming_loss :  0.20623376623376624
+
+kernel_ridge
+
+kendall correlation results : portugal_2009_end
+mean result :-0.6531698924731182
+std resul :0.04006422315616742
+hamming loss : 0.3117006451612903
+time :203.20888757705688
+portugal_2013_end
+Kendall's tau test set :  -0.655194805194805
+Local_Hamming_loss :  0.3122077922077922
+portugal_2017_end
+Kendall's tau test set :  -0.6305194805194805
+Local_Hamming_loss :  0.3174025974025974
+
+
+rf
+
+kendall correlation results : portugal_2009_end
+mean result :0.11540645161290324
+std resul :0.06879795107016884
+hamming loss : 0.19941849462365588
+time :132.9282205104828
+portugal_2013_end
+Kendall's tau test set :  0.06428571428571428
+Local_Hamming_loss :  0.19064935064935065
+portugal_2017_end
+Kendall's tau test set :  0.03441558441558441
+Local_Hamming_loss :  0.19350649350649352
+
+Kemeny.py
+
+knn
+
+kernel_ridge
+
+rf
+
