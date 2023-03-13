@@ -95,7 +95,14 @@ def HammingEmbed(sigma):
     for i in sigma:
         j=tuple(sigma).index(i)
         phi[i-1,j]+=1
-    return phi        
+    return phi
+
+def HammingEmbed_2(sigma):    
+    phi=np.zeros((len(sigma),len(sigma)))
+    for i in sigma:
+        j=tuple(sigma).index(i)
+        phi[j,i]+=1
+    return phi                
 
 def E(k,n):
     Ek=np.zeros((n,n))

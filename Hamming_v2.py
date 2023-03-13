@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
@@ -7,38 +6,24 @@ import pandas as pd
 import pickle
 import time
 
-from sklearn.model_selection import RepeatedKFold, GridSearchCV
+from sklearn.model_selection import RepeatedKFold , cross_val_score, GridSearchCV
 from sklearn.kernel_ridge import KernelRidge
 from sklearn.neighbors import KNeighborsRegressor
 from scipy.stats import kendalltau
 from sklearn.ensemble import RandomForestRegressor
 
 from misc_functions import ranking_format_sorted
-from kemeny_hamming_embeddings import HammingEmbed, encode_lehmer, decode_lehmer
+from kemeny_hamming_embeddings import HammingEmbed, vectorize_hamming_labels, HammingEmbed_2
+from scipy.optimize import linear_sum_assignment
 
 from sklearn.metrics import hamming_loss
 from sklearn.pipeline import Pipeline
 
-def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
-    acc_list = []
-    for i in range(y_true.shape[0]):
-        set_true = set( np.where(y_true[i])[0] )
-        set_pred = set( np.where(y_pred[i])[0] )
-        #print('\nset_true: {0}'.format(set_true))
-        #print('set_pred: {0}'.format(set_pred))
-        tmp_a = None
-        if len(set_true) == 0 and len(set_pred) == 0:
-            tmp_a = 1
-        else:
-            tmp_a = len(set_true.intersection(set_pred))/\
-                    float( len(set_true.union(set_pred)) )
-        #print('tmp_a: {0}'.format(tmp_a))
-        acc_list.append(tmp_a)
-    return np.mean(acc_list[2])
+
 
 #### parameters for running code ####
-regressor = 'kernel_ridge' # can use 'kernel_ridge', 'knn', 'rf'
-datasets_choice = 'portugal_election_sep' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
+regressor = 'knn' # can use 'kernel_ridge', 'knn', 'rf'
+datasets_choice = 'main_paper' #  can use 'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
 
 base_data_path = 'data/'
 
@@ -52,6 +37,9 @@ elif datasets_choice == 'supplementary':
     dataset_grid = ['bodyfat','calhousing','cpu-small','pendigits','segment','wisconsin','fried']
 elif datasets_choice == 'sushi':
     dataset_grid = ['sushi_one_hot']
+elif datasets_choice == 'german_election':
+    base_data_path = 'data_new/'
+    dataset_grid = ['german_2005_modif2', 'german_2009_modif2']
 elif datasets_choice == 'german_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['german_2005_modif2']
@@ -63,7 +51,6 @@ elif datasets_choice == 'portugal_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end']
     dataset_grid_test = ['portugal_2013_end', 'portugal_2017_end']
-
 else:
     print('unknown dataset choice')
     exit()
@@ -106,10 +93,9 @@ for dataset_choice in dataset_grid:
     features = dataset.drop('ranking', axis=1)
     dataset['label'] = dataset.ranking.map(ranking_format_sorted)
 
-    ##################### Compute Lehmer embeddings ################
-    dataset['lehmer'] = dataset.label.map(encode_lehmer)
-    lehmer_labels = dataset['lehmer'].apply(pd.Series)
-    lehmer_labels = lehmer_labels.rename(columns=lambda x: 'position_' + str(x))
+    ##################### Compute Hammings embeddings ################
+    dataset['hamming'] = dataset.label.map(HammingEmbed_2)
+    hamming_labels = dataset['hamming'].apply(vectorize_hamming_labels)
 
 
     ############ scores with Repeated KFold 5 times as in Cheng ###
@@ -122,7 +108,7 @@ for dataset_choice in dataset_grid:
     L_best_parameters = []
     for idx_train,idx_test in rkf.split(range(n)):
         X_train, X_test= features.loc[idx_train],features.loc[idx_test]
-        y_train, y_test = lehmer_labels.loc[idx_train] , lehmer_labels.loc[idx_test]
+        y_train, y_test = hamming_labels.loc[idx_train] , hamming_labels.loc[idx_test]
 
         # inner cv hyper parameter optimization
         grid_search = GridSearchCV(pipeline, parameters, cv = 5, n_jobs=-1)
@@ -141,44 +127,42 @@ for dataset_choice in dataset_grid:
         ######### pre-image computation on the test set (embedding dependent) ######
 
 
-
         n2 = pred_y_test.shape[1]
+        n1 = int(np.sqrt(n2))
 
-
-        vect_max_lehmer = np.tile(np.arange(n2), (len(pred_y_test), 1))
-
-        # [[0,1,2,3,..,n],[0,1,2,3,..,n], ... , [0,1,2,3,..,n]]
-
-        proj_0 = np.maximum(pred_y_test, 0)
-        proj_pos = np.minimum(proj_0 - vect_max_lehmer, 0)
-        projection_pred_y_test = proj_pos + vect_max_lehmer
-        round_projection_pred_y_test = np.round(projection_pred_y_test).astype(int)
-
-        pred_y_test_tuple = pd.DataFrame(round_projection_pred_y_test).T.apply(lambda x: tuple(x))
-        real_y_test_tuple = y_test.T.apply(lambda x: tuple(x))
+        L_pred_preimage = []
+        L_pred_nopreimage = []
+        # Could be made parallel :
+        for idx_instance in range(len(pred_y_test)):
+            cost_mat = pred_y_test[idx_instance, :].reshape([n1, n1])
+            row_ind, col_ind = linear_sum_assignment(-cost_mat)
+            solution = np.zeros([n1, n1])
+            solution[row_ind, col_ind] = 1
+            sigma_inv = np.nonzero(solution)[1]
+            L_pred_preimage += [sigma_inv]
+            L_pred_nopreimage += [solution.ravel()]
 
         ## Store results
 
-        predictions = pred_y_test_tuple.apply(decode_lehmer)
-        predictions_list = predictions.apply(lambda x: list(x))
-
-        real_rankings = real_y_test_tuple.apply(decode_lehmer)
+        predictions = pd.Series(L_pred_preimage)
+        real_rankings = dataset['label'].loc[y_test.index]
 
 
-        out_emb_pred = predictions_list.apply(HammingEmbed, axis=1)
-        out_emb_pred = np.asarray([i.ravel() for i in out_emb_pred])
-        out_emb_real = real_rankings.apply(HammingEmbed, axis=1)
+        out_emb_real = dataset['hamming'].loc[y_test.index].to_numpy()
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
+        out_emb_pred = np.asarray(L_pred_nopreimage)
 
 
-        #local_Hamming_loss = np.sum(np.not_equal(out_emb_real, out_emb_pred))/float(out_emb_real)
-        #local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
-        local_Hamming_loss = hammingloss(out_emb_real, out_emb_pred)
+        local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
         L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
                                zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
+#        result_kendall_tau = np.mean(np.sum(np.abs(y_test.as_matrix() - np.asarray(L_pred)),axis = 1))
+#        result_kendall_tau_normalized = result_kendall_tau/y_test.shape[1]
+
+#        L_results_kendall_distance += [result_kendall_tau_normalized]
         L_results_kendall_coeff += [mean_kendall_tau_coeff]
 
         n_iter += 1
@@ -205,7 +189,7 @@ t_end = time.time()
 
 print('time :'+str(t_end - t_1))
 
-name_saved_file = regressor+ '_Lehmer_'+ datasets_choice+ '.pkl'
+name_saved_file = regressor+ '_Hamming_'+ datasets_choice+ '.pkl'
 
 
 try:
@@ -214,61 +198,59 @@ except:
     pickle.dump(dico_all_results, open(name_saved_file, 'wb'))
     print('no existing folder saved_results, results were saved in the current folder instead')
 
-if len(dataset_grid_test) != 0:
+
+if len(dataset_grid_test) !=0:
     for dataset_choice in dataset_grid_test:
         print(dataset_choice)
 
         ######################## Loading dataset ########################
         dataset_path = base_data_path + dataset_choice + '.txt'
+
         dataset = pd.read_csv(dataset_path)
         n = len(dataset)
         features = dataset.drop('ranking', axis=1)
         dataset['label'] = dataset.ranking.map(ranking_format_sorted)
 
-        ##################### Compute Lehmer embeddings ################
-        dataset['lehmer'] = dataset.label.map(encode_lehmer)
-        lehmer_labels = dataset['lehmer'].apply(pd.Series)
-        lehmer_labels = lehmer_labels.rename(columns=lambda x: 'position_' + str(x))
-
-
+        ##################### Compute Hammings embeddings ################
+        dataset['hamming'] = dataset.label.map(HammingEmbed_2)
+        hamming_labels = dataset['hamming'].apply(vectorize_hamming_labels)
+        
         ##################### feature space prediction (in F_Y) ####################
         X_test = features.copy()
-        y_test = lehmer_labels.copy()
+        y_test = hamming_labels.copy()
 
         pred_y_test = regr.predict(features)
 
-        ######### pre-image computation on the test set (embedding dependent) ######
         n2 = pred_y_test.shape[1]
-        vect_max_lehmer = np.tile(np.arange(n2), (len(pred_y_test), 1))
+        n1 = int(np.sqrt(n2))
 
-        # [[0,1,2,3,..,n],[0,1,2,3,..,n], ... , [0,1,2,3,..,n]]
-
-        proj_0 = np.maximum(pred_y_test, 0)
-        proj_pos = np.minimum(proj_0 - vect_max_lehmer, 0)
-        projection_pred_y_test = proj_pos + vect_max_lehmer
-        round_projection_pred_y_test = np.round(projection_pred_y_test).astype(int)
-
-        pred_y_test_tuple = pd.DataFrame(round_projection_pred_y_test).T.apply(lambda x: tuple(x))
-        real_y_test_tuple = y_test.T.apply(lambda x: tuple(x))
+        L_pred_preimage = []
+        L_pred_nopreimage = []
+        # Could be made parallel :
+        for idx_instance in range(len(pred_y_test)):
+            cost_mat = pred_y_test[idx_instance, :].reshape([n1, n1])
+            row_ind, col_ind = linear_sum_assignment(-cost_mat)
+            solution = np.zeros([n1, n1])
+            solution[row_ind, col_ind] = 1
+            sigma_inv = np.nonzero(solution)[1]
+            L_pred_preimage += [sigma_inv]
+            L_pred_nopreimage += [solution.ravel()]
 
         ## Store results
-        predictions = pred_y_test_tuple.apply(decode_lehmer)
-        predictions_list = predictions.apply(lambda x: list(x))
+        predictions = pd.Series(L_pred_preimage)
+        real_rankings = dataset['label'].loc[y_test.index]
 
-        real_rankings = real_y_test_tuple.apply(decode_lehmer)
-
-        out_emb_pred = predictions_list.apply(HammingEmbed, axis=1)
-        out_emb_pred = np.asarray([i.ravel() for i in out_emb_pred])
-        out_emb_real = real_rankings.apply(HammingEmbed, axis=1)
+        out_emb_real = dataset['hamming'].loc[y_test.index].to_numpy()
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
+        out_emb_pred = np.asarray(L_pred_nopreimage)
 
 
-        #local_Hamming_loss = np.sum(np.not_equal(out_emb_real, out_emb_pred))/float(out_emb_real)
-        #local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
-        local_Hamming_loss = hammingloss(out_emb_real, out_emb_pred)
+        local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
+        L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
-                               zip(predictions.items(),real_rankings.items())]
+                                zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
+        L_results_kendall_coeff += [mean_kendall_tau_coeff]
         print("Kendall's tau test set : ", mean_kendall_tau_coeff)
         print("Local_Hamming_loss : ", local_Hamming_loss)

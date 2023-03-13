@@ -32,6 +32,7 @@ base_data_path = 'data/'
 random_state = 1234
 # Choose a dataset
 
+dataset_grid_test = []
 if datasets_choice == 'main_paper':
     dataset_grid =  ['iris','vehicle','glass','authorship','vowel','wine']  # main page paper
 elif datasets_choice == 'supplementary':
