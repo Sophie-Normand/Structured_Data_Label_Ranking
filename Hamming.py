@@ -22,7 +22,7 @@ from sklearn.pipeline import Pipeline
 
 
 #### parameters for running code ####
-regressor = 'knn' # can use 'kernel_ridge', 'knn'
+regressor = 'rf' # can use 'kernel_ridge', 'knn'
 datasets_choice = 'german_election_sep' #  can use 'supplementary' and 'additionals'
 
 base_data_path = 'data/'

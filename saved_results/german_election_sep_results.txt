@@ -8,6 +8,7 @@ mean result :0.8460348432055746
 std resul :0.02340613796041697
 hamming loss : 0.34700000000000003
 time :33.372597217559814
+german_2009_modif2
 Kendall's tau test set :  0.7796116504854367
 Local_Hamming_loss :  0.5
 
@@ -18,6 +19,7 @@ mean result :0.8486666666666666
 std resul :0.02588701397217016
 hamming loss : 0.3846666666666666
 time :241.56590914726257
+german_2009_modif2
 Kendall's tau test set :  0.7868932038834952
 Local_Hamming_loss :  0.16666666666666666
 
@@ -28,6 +30,7 @@ mean result :0.9189732868757258
 std resul :0.01896571382089581
 hamming loss : 0.5086666666666667
 time :24.865516901016235
+german_2009_modif2
 Kendall's tau test set :  0.8140776699029125
 Local_Hamming_loss :  0.16666666666666666
 
@@ -40,7 +43,10 @@ kendall correlation results : german_2005_modif2
 mean result :0.20059465737514515
 std resul :0.03422783452241244
 hamming loss : 0.10584529616724739
-time :31.630439043045044
+time :10.50865888595581
+german_2009_modif2
+Kendall's tau test set :  0.21359223300970873
+Local_Hamming_loss :  0.14194174757281552
 
 kernel_ridge
 
@@ -48,15 +54,21 @@ kendall correlation results : german_2005_modif2
 mean result :0.18712891986062719
 std resul :0.032391879156281396
 hamming loss : 0.10029732868757261
-time :256.09987592697144
+time :203.05427026748657
+german_2009_modif2
+Kendall's tau test set :  0.21019417475728153
+Local_Hamming_loss :  0.13611650485436894
 
 rf
 
 kendall correlation results : german_2005_modif2
-mean result :0.2011312427409988
-std resul :0.03480550658971346
-hamming loss : 0.0555883855981417
-time :24.526154041290283
+mean result :0.20023693379790938
+std resul :0.036554506167155186
+hamming loss : 0.055690592334494776
+time :48.51395773887634
+german_2009_modif2
+Kendall's tau test set :  0.21067961165048543
+Local_Hamming_loss :  0.12466019417475728
 
 
 Kemeny.py
@@ -67,7 +79,10 @@ kendall correlation results : german_2005_modif2
 mean result :0.8504599303135888
 std resul :0.022587658276662155
 hamming loss : 0.10547270615563299
-time :50.09166121482849
+time :17.481456756591797
+german_2009_modif2
+Kendall's tau test set :  0.7509708737864077
+Local_Hamming_loss :  0.1479611650485437
 
 kernel_ridge
 
@@ -75,12 +90,18 @@ kendall correlation results : german_2005_modif2
 mean result :0.7897235772357724
 std resul :0.05691915477203193
 hamming loss : 0.10994843205574913
-time :212.7342357635498
+time :202.48229885101318
+german_2009_modif2
+Kendall's tau test set :  0.8014563106796116
+Local_Hamming_loss :  0.13300970873786408
 
 rf
 
 kendall correlation results : german_2005_modif2
-mean result :0.9258815331010452
-std resul :0.017960077215812352
-hamming loss : 0.05390197444831591
-time :30.65517807006836
+mean result :0.9204181184668988
+std resul :0.019661299117527297
+hamming loss : 0.05839070847851336
+time :46.40235686302185
+german_2009_modif2
+Kendall's tau test set :  0.7970873786407766
+Local_Hamming_loss :  0.1363106796116505
