@@ -23,7 +23,7 @@ from sklearn.pipeline import Pipeline
 
 #### parameters for running code ####
 regressor = 'rf' # can use 'kernel_ridge'
-datasets_choice = 'german_election_sep' #  can use 'supplementary' and 'additionals'
+datasets_choice = 'portugal_election_2009' #  can use 'supplementary' and 'additionals'
 
 base_data_path = 'data/'
 
@@ -43,6 +43,11 @@ elif (datasets_choice == 'german_election') or (datasets_choice == 'german_elect
 elif datasets_choice == 'portugal_election':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end', 'portugal_2013_end', 'portugal_2017_end']
+elif datasets_choice == 'iris':
+    dataset_grid =  ['iris']
+elif datasets_choice == 'portugal_election_2009':
+    base_data_path = 'data_new/'
+    dataset_grid = ['portugal_2009_end']
 else:
     print('unknown dataset choice')
     exit()

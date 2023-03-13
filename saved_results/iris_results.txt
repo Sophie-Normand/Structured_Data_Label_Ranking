@@ -1,0 +1,82 @@
+iris
+
+Lehmer.py
+
+knn
+
+kendall correlation results : iris
+mean result :0.953777777777778
+std resul :0.04165466493816879
+hamming loss : 0.7076666666666668
+time :23.967411994934082
+
+kernel_ridge
+
+kendall correlation results : iris
+mean result :0.9697777777777778
+std resul :0.027310740436866134
+hamming loss : 0.7943333333333333
+time :58.481560945510864
+
+rf
+
+kendall correlation results : iris
+mean result :0.9671111111111113
+std resul :0.030547271604337
+hamming loss : 0.7616666666666667
+time :21.359968900680542
+
+
+Hamming.py
+
+knn
+
+kendall correlation results : iris
+mean result :-0.12977777777777783
+std resul :0.13335999733386653
+hamming loss : 0.034962962962962967
+time :16.208081007003784
+
+kernel_ridge
+
+kendall correlation results : iris
+mean result :-0.10311111111111115
+std resul :0.13324144982180763
+hamming loss : 0.024296296296296295
+time :96.28240585327148
+
+rf
+
+kendall correlation results : iris
+mean result :-0.10133333333333339
+std resul :0.12001316800179539
+hamming loss : 0.021925925925925925
+time :16.010942935943604
+
+
+Kemeny.py
+
+knn
+
+kendall correlation results : iris
+mean result :0.952888888888889
+std resul :0.03813944524964429
+hamming loss : 0.03140740740740741
+time :9.510259866714478
+
+kernel_ridge
+
+kendall correlation results : iris
+mean result :0.9635555555555557
+std resul :0.045053603191019295
+hamming loss : 0.021925925925925932
+time :86.46297812461853
+
+rf
+
+kendall correlation results : iris
+mean result :0.9644444444444445
+std resul :0.03442651863295478
+hamming loss : 0.023703703703703706
+time :34.107664823532104
+
