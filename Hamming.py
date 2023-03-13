@@ -22,8 +22,8 @@ from sklearn.pipeline import Pipeline
 
 
 #### parameters for running code ####
-regressor = 'rf' # can use 'kernel_ridge'
-datasets_choice = 'portugal_election_2009' #  can use 'supplementary' and 'additionals'
+regressor = 'knn' # can use 'kernel_ridge', 'knn'
+datasets_choice = 'german_election_sep' #  can use 'supplementary' and 'additionals'
 
 base_data_path = 'data/'
 
@@ -36,18 +36,17 @@ elif datasets_choice == 'supplementary':
     dataset_grid = ['bodyfat','calhousing','cpu-small','pendigits','segment','wisconsin','fried']
 elif datasets_choice == 'sushi':
     dataset_grid = ['sushi_one_hot']
-elif (datasets_choice == 'german_election') or (datasets_choice == 'german_election_sep'):
+elif datasets_choice == 'german_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['german_2005_modif2']
     dataset_grid_test = ['german_2009_modif2']
 elif datasets_choice == 'portugal_election':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end', 'portugal_2013_end', 'portugal_2017_end']
-elif datasets_choice == 'iris':
-    dataset_grid =  ['iris']
-elif datasets_choice == 'portugal_election_2009':
+elif datasets_choice == 'portugal_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end']
+    dataset_grid_test = ['portugal_2013_end', 'portugal_2017_end']
 else:
     print('unknown dataset choice')
     exit()
@@ -70,8 +69,9 @@ elif regressor == 'knn':
     parameters = {'clf__n_neighbors': alpha_grid}
     pipeline = Pipeline([('clf', KNeighborsRegressor())])
 elif regressor =='rf':
-    parameters = {}
-    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50,max_depth = 50,n_jobs = -1))])
+    max_depth_grid = [5, 50, 100]
+    parameters = {'clf__max_depth':max_depth_grid}
+    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50, n_jobs = -1))])
 
 
 
@@ -195,8 +195,9 @@ except:
     print('no existing folder saved_results, results were saved in the current folder instead')
 
 
-if dataset_choice == "german_election_sep":
-    for dataset_choice in dataset_grid:
+if len(dataset_grid_test) !=0:
+    for dataset_choice in dataset_grid_test:
+        print(dataset_choice)
 
         ######################## Loading dataset ########################
         dataset_path = base_data_path + dataset_choice + '.txt'
@@ -209,43 +210,19 @@ if dataset_choice == "german_election_sep":
         ##################### Compute Hammings embeddings ################
         dataset['hamming'] = dataset.label.map(HammingEmbed)
         hamming_labels = dataset['hamming'].apply(vectorize_hamming_labels)
+        
+        ##################### feature space prediction (in F_Y) ####################
+        X_test = features.copy()
+        y_test = hamming_labels.copy()
 
-
-        ############ scores with Repeated KFold 5 times as in Cheng ###
-        # rkf = RepeatedKFold(n_splits=10, n_repeats=5, random_state=random_state)
-
-        # # outer cv evaluation loop
-        # L_results_kendall_distance = []
-        # L_results_kendall_coeff = []
-        # L_hamming_loss = []
-        # L_best_parameters = []
-        # for idx_train,idx_test in rkf.split(range(n)):
-        #     X_train, X_test= features.loc[idx_train],features.loc[idx_test]
-        #     y_train, y_test = hamming_labels.loc[idx_train] , hamming_labels.loc[idx_test]
-
-        #     # inner cv hyper parameter optimization
-        #     grid_search = GridSearchCV(pipeline, parameters, cv = 5, n_jobs=-1)
-        #     grid_search.fit(X_train,y_train)
-
-        #     best_params = grid_search.best_params_
-        #     regr = grid_search.best_estimator_
-        #     L_best_parameters += [best_params]
-
-
-            ##################### feature space prediction (in F_Y) ####################
-
-
-        pred_y_test = regr.predict(X_test)
-
-            ######### pre-image computation on the test set (embedding dependent) ######
-
+        pred_y_test = regr.predict(features)
 
         n2 = pred_y_test.shape[1]
         n1 = int(np.sqrt(n2))
 
         L_pred_preimage = []
         L_pred_nopreimage = []
-            # Could be made parallel :
+        # Could be made parallel :
         for idx_instance in range(len(pred_y_test)):
             cost_mat = pred_y_test[idx_instance, :].reshape([n1, n1])
             row_ind, col_ind = linear_sum_assignment(-cost_mat)
@@ -255,11 +232,9 @@ if dataset_choice == "german_election_sep":
             L_pred_preimage += [sigma_inv]
             L_pred_nopreimage += [solution.ravel()]
 
-            ## Store results
-
+        ## Store results
         predictions = pd.Series(L_pred_preimage)
         real_rankings = dataset['label'].loc[y_test.index]
-
 
         out_emb_real = dataset['hamming'].loc[y_test.index].to_numpy()
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
@@ -272,10 +247,6 @@ if dataset_choice == "german_election_sep":
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
                                 zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
-    #        result_kendall_tau = np.mean(np.sum(np.abs(y_test.as_matrix() - np.asarray(L_pred)),axis = 1))
-    #        result_kendall_tau_normalized = result_kendall_tau/y_test.shape[1]
-
-    #        L_results_kendall_distance += [result_kendall_tau_normalized]
         L_results_kendall_coeff += [mean_kendall_tau_coeff]
         print("Kendall's tau test set : ", mean_kendall_tau_coeff)
-        print('Local_Hamming_loss : ', local_Hamming_loss)
+        print("Local_Hamming_loss : ", local_Hamming_loss)

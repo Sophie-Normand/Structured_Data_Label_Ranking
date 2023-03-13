@@ -26,7 +26,7 @@ import operalib as ovk #for gradient based ridge learning when output embedding 
 
 #### parameters for running code ####
 regressor = 'rf' # can use 'kernel_ridge', 'rf', 'onorma' or 'knn'
-datasets_choice = 'portugal_election_2009' #  can use 'supplementary' and 'additionals'
+datasets_choice = 'portugal_election_sep' #  can use 'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
 base_data_path = 'data/'
 
 random_state = 1234
@@ -38,18 +38,20 @@ elif datasets_choice == 'supplementary':
     dataset_grid = ['bodyfat','calhousing','cpu-small','pendigits','segment','wisconsin','fried']
 elif datasets_choice == 'sushi':
     dataset_grid = ['sushi_one_hot']
-elif (datasets_choice == 'german_election') or (datasets_choice == 'german_election_sep'):
+elif datasets_choice == 'german_election':
+    base_data_path = 'data_new/'
+    dataset_grid = ['german_2005_modif2', 'german_2009_modif2']
+elif datasets_choice == 'german_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['german_2005_modif2']
     dataset_grid_test = ['german_2009_modif2']
 elif datasets_choice == 'portugal_election':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end', 'portugal_2013_end', 'portugal_2017_end']
-elif datasets_choice == 'iris':
-    dataset_grid =  ['iris']
-elif datasets_choice == 'portugal_election_2009':
+elif datasets_choice == 'portugal_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end']
+    dataset_grid_test = ['portugal_2013_end', 'portugal_2017_end']
 else:
     print('unknown dataset choice')
     exit()
@@ -72,8 +74,9 @@ elif regressor == 'knn':
     parameters = {'clf__n_neighbors': alpha_grid}
     pipeline = Pipeline([('clf', KNeighborsRegressor())])
 elif regressor =='rf':
-    parameters = {}
-    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50,max_depth = 50,n_jobs = -1))])
+    max_depth_grid = [5, 50, 100]
+    parameters = {'clf__max_depth':max_depth_grid}
+    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50, n_jobs = -1))])
 elif regressor == 'onorma':
     gamma_grid = [.0000002,.000002,.00002]
     learning_rate_grid = [ovk.InvScaling(3.),ovk.InvScaling(.5)]
@@ -252,8 +255,9 @@ except:
 
 
 
-if dataset_choice == "german_election_sep":
-    for dataset_choice in dataset_grid:
+if len(dataset_grid_test) !=0:
+    for dataset_choice in dataset_grid_test:
+        print(dataset_choice)
 
         ######################## Loading dataset ########################
         dataset_path = base_data_path + dataset_choice + '.txt'
@@ -311,32 +315,13 @@ if dataset_choice == "german_election_sep":
         simplex += sigma <= 1
         simplex += sigma >= 0
 
-        ############ scores with Repeated KFold 5 times as in Cheng ###
-        #rkf = RepeatedKFold(n_splits=10, n_repeats=5, random_state=random_state)
+        ##################### feature space prediction (in F_Y) ####################
+        X_test = features.copy()
+        y_test = kemeny_labels.copy()
+        
+        pred_y_test = regr.predict(features)
 
-        # # outer cv evaluation loop
-        # L_results_kendall_distance = []
-        # L_results_kendall_coeff = []
-        # L_hamming_loss = []
-        # for idx_train,idx_test in rkf.split(range(n)):
-        #     X_train, X_test= features.loc[idx_train],features.loc[idx_test]
-        #     y_train, y_test = kemeny_labels.loc[idx_train] , kemeny_labels.loc[idx_test]
-
-        #     # inner cv hyper parameter optimization
-        #     grid_search = GridSearchCV(pipeline, parameters, cv = 5, n_jobs=-1)
-        #     grid_search.fit(X_train,y_train)
-
-        #     best_params = grid_search.best_params_
-        #     regr = grid_search.best_estimator_
-        #     L_best_parameters += [best_params]
-
-
-            ##################### feature space prediction (in F_Y) ####################
-
-
-        pred_y_test = regr.predict(X_test)
-
-            ######### pre-image computation on the test set (embedding dependent) ######
+        ######### pre-image computation on the test set (embedding dependent) ######
         L_pred = []
         L_pred_list = []
         # for loop could be set in parallel
@@ -346,25 +331,20 @@ if dataset_choice == "german_election_sep":
 
             simplex.objective = 2 * (cost_vector + 0.5) * sigma
 
-                # solve using branch and bound :
+            # solve using branch and bound :
             cbcModel = simplex.getCbcModel()
             verbose = cbcModel.solve()
-                #cbcModel = simplex
+            #cbcModel = simplex
 
             solution = cbcModel.primalVariableSolution['sigma']
             L_pred += [solution]
 
 
-
-
-            ## Store results
-
-
+        ## Store results
         predictions = pd.Series(L_pred).map(KemenyInvert_unisign)
         predictions_list = predictions.apply(lambda x:x.tolist())
 
         real_rankings = dataset['label'].loc[y_test.index] #pd.Series(y_test).map(KemenyInvert_unisign)
-
 
         out_emb_pred = predictions_list.map(HammingEmbed)
         out_emb_pred = np.asarray([i.ravel() for i in out_emb_pred])
@@ -372,19 +352,10 @@ if dataset_choice == "german_election_sep":
         out_emb_real = np.asarray([i.ravel() for i in out_emb_real])
 
         local_Hamming_loss = hamming_loss(out_emb_real, out_emb_pred)
-        L_hamming_loss += [local_Hamming_loss]
 
         L_kendall_tau_coeff = [kendalltau(pred,real).correlation for ((_,pred),(_,real)) in
                                 zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
-        result_kendall_tau = np.mean(np.sum(np.abs(y_test.values - np.asarray(L_pred)),axis = 1))
-        result_kendall_tau_normalized = result_kendall_tau/y_test.shape[1]
-
-
-        L_results_kendall_distance += [result_kendall_tau_normalized]
-        L_results_kendall_coeff += [mean_kendall_tau_coeff]
 
         print("Kendall's tau test set : ", mean_kendall_tau_coeff)
-        print('Local_Hamming_loss : ', local_Hamming_loss)
-
-        
+        print("Local_Hamming_loss : ", local_Hamming_loss)

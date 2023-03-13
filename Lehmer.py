@@ -37,8 +37,8 @@ def hammingloss(y_true, y_pred, normalize=True, sample_weight=None):
     return np.mean(acc_list[2])
 
 #### parameters for running code ####
-regressor = 'rf' # can use 'kernel_ridge'
-datasets_choice = 'portugal_election_2009' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election'
+regressor = 'rf' # can use 'kernel_ridge', 'knn'
+datasets_choice = 'german_election_sep' #  can use  'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
 
 base_data_path = 'data/'
 
@@ -51,18 +51,17 @@ elif datasets_choice == 'supplementary':
     dataset_grid = ['bodyfat','calhousing','cpu-small','pendigits','segment','wisconsin','fried']
 elif datasets_choice == 'sushi':
     dataset_grid = ['sushi_one_hot']
-elif (datasets_choice == 'german_election') or (datasets_choice == 'german_election_sep'):
+elif datasets_choice == 'german_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['german_2005_modif2']
     dataset_grid_test = ['german_2009_modif2']
 elif datasets_choice == 'portugal_election':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end', 'portugal_2013_end', 'portugal_2017_end']
-elif datasets_choice == 'iris':
-    dataset_grid =  ['iris']
-elif datasets_choice == 'portugal_election_2009':
+elif datasets_choice == 'portugal_election_sep':
     base_data_path = 'data_new/'
     dataset_grid = ['portugal_2009_end']
+    dataset_grid_test = ['portugal_2013_end', 'portugal_2017_end']
 
 else:
     print('unknown dataset choice')
@@ -86,8 +85,9 @@ elif regressor == 'knn':
     parameters = {'clf__n_neighbors': alpha_grid}
     pipeline = Pipeline([('clf', KNeighborsRegressor())])
 elif regressor =='rf':
-    parameters = {}
-    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50,max_depth = 50,n_jobs = -1))])
+    max_depth_grid = [5, 50, 100]
+    parameters = {'clf__max_depth':max_depth_grid}
+    pipeline = Pipeline([('clf', RandomForestRegressor(n_estimators = 50, n_jobs = -1))])
 
 
 
@@ -213,8 +213,9 @@ except:
     pickle.dump(dico_all_results, open(name_saved_file, 'wb'))
     print('no existing folder saved_results, results were saved in the current folder instead')
 
-if datasets_choice == "german_election_sep":
+if len(dataset_grid_test) != 0:
     for dataset_choice in dataset_grid_test:
+        print(dataset_choice)
 
         ######################## Loading dataset ########################
         dataset_path = base_data_path + dataset_choice + '.txt'
@@ -269,4 +270,4 @@ if datasets_choice == "german_election_sep":
                                zip(predictions.items(),real_rankings.items())]
         mean_kendall_tau_coeff = np.mean(L_kendall_tau_coeff)
         print("Kendall's tau test set : ", mean_kendall_tau_coeff)
-        print('Local_Hamming_loss : ', local_Hamming_loss)
+        print("Local_Hamming_loss : ", local_Hamming_loss)
