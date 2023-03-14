@@ -17,6 +17,14 @@ std resul :0.0101061406684192
 hamming loss : 0.012197802197802199
 time :48183.23624610901
 
+rf
+
+kendall correlation results : sushi_one_hot
+mean result :0.1986542222222222
+std resul :0.008631216568757273
+hamming loss : 0.005064935064935066
+time :846.7756469249725
+
 
 Kemeny.py
 
@@ -37,6 +45,14 @@ std resul :0.011870591244492718
 hamming loss : 0.1655504
 time :48209.01649188995
 
+rf
+
+kendall correlation results : sushi_one_hot
+mean result :0.33367822222222215
+std resul :0.01099879431327265
+hamming loss : 0.165388
+time :885.7897989749908
+
 
 Hamming.py 
 
@@ -56,3 +72,11 @@ mean result :0.029141333333333335
 std resul :0.010949427864865873
 hamming loss : 0.1645264
 time :48126.08036613464
+
+rf
+
+kendall correlation results : sushi_one_hot
+mean result :0.02970488888888889
+std resul :0.013069153988507007
+hamming loss : 0.1643576
+time :907.190153837204

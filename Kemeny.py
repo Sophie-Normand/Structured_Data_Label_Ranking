@@ -26,7 +26,7 @@ import operalib as ovk #for gradient based ridge learning when output embedding 
 
 #### parameters for running code ####
 regressor = 'rf' # can use 'kernel_ridge', 'rf', 'onorma' or 'knn'
-datasets_choice = 'portugal_election_sep' #  can use 'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
+datasets_choice = 'sushi' #  can use 'main_paper', 'supplementary', 'additionals', 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
 base_data_path = 'data/'
 
 random_state = 1234

@@ -23,7 +23,7 @@ from sklearn.pipeline import Pipeline
 
 #### parameters for running code ####
 regressor = 'rf' # can use 'kernel_ridge', 'knn', 'rf'
-datasets_choice = 'portugal_election_sep' #  can use 'main_paper', 'supplementary' , 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
+datasets_choice = 'sushi' #  can use 'main_paper', 'supplementary' , 'sushi', 'german_election', 'german_election_sep', 'portugal_election', 'portugal_election_sep'
 
 base_data_path = 'data/'
 

@@ -8,7 +8,13 @@ kendall correlation results : german_2005_modif2
 mean result :0.8460348432055746
 std resul :0.02340613796041697
 hamming loss : 0.34700000000000003
-time :10.739773273468018
+
+kendall correlation results : german_2009_modif2
+mean result :0.8272868757259001
+std resul :0.024292691478261533
+hamming loss : 0.287
+
+time :20.72137975692749
 
 kernel_ridge
 
@@ -16,15 +22,27 @@ kendall correlation results : german_2005_modif2
 mean result :0.8486666666666666
 std resul :0.02588701397217016
 hamming loss : 0.3846666666666666
-time :139.61684393882751
+
+kendall correlation results : german_2009_modif2
+mean result :0.823614401858304
+std resul :0.026080344996837288
+hamming loss : 0.2746190476190476
+
+time :274.6963939666748
 
 rf
 
 kendall correlation results : german_2005_modif2
-mean result :0.9214959349593496
-std resul :0.018786586207301347
-hamming loss : 0.5586666666666666
-time :25.144001722335815
+mean result :0.917019744483159
+std resul :0.019889027652469356
+hamming loss : 0.5383333333333333
+
+kendall correlation results : german_2009_modif2
+mean result :0.8793333333333332
+std resul :0.02306682678022315
+hamming loss : 0.3215714285714285
+
+time :96.16467499732971
 
 
 
@@ -36,7 +54,13 @@ kendall correlation results : german_2005_modif2
 mean result :0.20059465737514515
 std resul :0.03422783452241244
 hamming loss : 0.10584529616724739
-time :21.66063904762268
+
+
+kendall correlation results : german_2009_modif2
+mean result :0.16575145180023226
+std resul :0.026553922818323288
+hamming loss : 0.11609941927990709
+time :135.24400401115417
 
 kernel_ridge
 
@@ -44,15 +68,27 @@ kendall correlation results : german_2005_modif2
 mean result :0.18712891986062719
 std resul :0.032391879156281396
 hamming loss : 0.10029732868757261
-time :195.70502305030823
+
+kendall correlation results : german_2009_modif2
+mean result :0.14850174216027875
+std resul :0.027916944167588848
+hamming loss : 0.1223507549361208
+
+time :548.8062660694122
 
 rf
 
 kendall correlation results : german_2005_modif2
-mean result :0.2022903600464576
-std resul :0.0351268442904151
-hamming loss : 0.05601579558652729
-time :39.966245889663696
+mean result :0.19813472706155633
+std resul :0.03582228298855196
+hamming loss : 0.05617560975609757
+
+kendall correlation results : german_2009_modif2
+mean result :0.1314308943089431
+std resul :0.030681168923494373
+hamming loss : 0.08485203252032521
+
+time :103.29116225242615
 
 
 Kemeny.py
@@ -65,6 +101,12 @@ std resul :0.022587658276662155
 hamming loss : 0.10547270615563299
 time :40.41892099380493
 
+kendall correlation results : german_2009_modif2
+mean result :0.8268083623693379
+std resul :0.024531702938948394
+hamming loss : 0.1190383275261324
+time :36.51440215110779
+
 kernel_ridge
 
 kendall correlation results : german_2005_modif2
@@ -73,6 +115,12 @@ std resul :0.05691915477203193
 hamming loss : 0.10994843205574913
 time :210.72714686393738
 
+kendall correlation results : german_2009_modif2
+mean result :0.7477351916376306
+std resul :0.059831135466965904
+hamming loss : 0.14169198606271777
+time :330.1074028015137
+
 rf
 
 kendall correlation results : german_2005_modif2
@@ -80,3 +128,9 @@ mean result :0.9231567944250871
 std resul :0.017407549732781337
 hamming loss : 0.05639674796747968
 time :30.35353422164917
+
+kendall correlation results : german_2009_modif2
+mean result :0.883990708478513
+std resul :0.021812197469222562
+hamming loss : 0.08572636469221835
+time :159.4308319091797
