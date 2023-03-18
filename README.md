@@ -39,7 +39,7 @@ python Lehmer.py
 
 ## Improvement of the Hamming approach
 
-We have improved the performance of the Hamming approach. We have corrected the way Hamming embedding is calculated.
+We have improved the performance of the Hamming approach by changing the way of computation of the Hamming embedding (see the notebook ``test_embeddings.ipynb`` for some examples).
 
 To run our improved Hamming approach:
 
