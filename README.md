@@ -8,18 +8,13 @@ It has been adapted in Python 3.
 In order to run our code correctly in Python 3, you will need to install the "operalib" library, and then make the following changes:
 
 - In the file awful.py, that can be found in "/opt/anaconda3/lib/python3.8/site-packages/operalib/datasets":
-
-Delete all "npbool" and "npfloat".
+    - comment the imports beginning by ``from numpy import``
+    - replace the ``np.bool`` and ``np.float`` instructions by ``bool`` and  ``float`` from Python.
 
 - In the file signal.py, that can be found in "/opt/anaconda3/lib/python3.8/site-packages/operalib/datasets":
-
-Comment the line "from sklearn.externals.six.moves import xrange.
-
-Replace it by:
-
-"import six
-
-from six.moves import xrange"
+    - comment the line ``from sklearn.externals.six.moves import xrange``
+    - replace it by ``import six``
+                    ``from six.moves import xrange``
 
 ## Performing Numerical Experiments
 
